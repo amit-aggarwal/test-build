@@ -1,0 +1,60 @@
+# Required for Java 8 appliaction
+sudo: required
+language: java
+jdk:
+  - oraclejdk8
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+env:
+  global:
+    # Docker version
+    - DOCKER_COMPOSE_VERSION: 1.8.0-rc2
+    # This section is used to add any env variables that your build process will need
+    # TRAVIS_SONAR_PASSWORD
+    - secure: lntI1T8qhQ6BsL1ephCnF790FU8DZMKYHfUdQuBYSeHKelj6jYwi3M2mBxwjmazRRmJfXj2CN8okv98qNj2aLg2yDuT/O7lxG746gOo4JposnagKpYr9fIg2wdofChM4w1DS0iH4HuhYk76TLO+5+QW5EDWBgXDGzAoszh7fFF0x+HSyi5fZPf0s5lAW5SXudEX0gyio6Re+mktYugI8eKmOGXz6LdUjzxl2wqIUGhErt703IA+t7Dc4xNwc0VrO5o+gSiyTZUP9GZ9m8sVqF54vO2ZqqmVI7znFa9xaFB+L2+rOEBzWUUzBCXYiQaukMEEYdHt7Wrr+YdGyC+krUrL4sIxAeri0VR2cuUBM1200j3ckdEio2zmzm4S9N/+9i1kH7FPztHlA24su5J9WRP0W+wEtPXRTR4ode9TXTVHtqu1+fEn1VJGx5cj70uJSDC3/YNGEUPK6mbWqIZ1D9sG9S6kFFj2E5iDsJPT8zUOfdtAOJ5F54hBeD/JASJCHktGWDCnuvKZunSPQSUWO4kC7VNdc7jqerbAc9HnodTzbEKEas9T2L6rxa/BMBVu5hrryZM0+MQsVKcUif2OxvgHagt0x8jhEK4piWxN9HWTIWVgVOVcNvtrfAM+wc+vfekfVMNp/9SS0txArrqYYBdRsrd3xegrKn6Eola0nBiA=
+    # TRAVIS_SONAR_MYSQL_PASSWORD
+    - secure: riKG438RunydomoaAbgyjN0pyGTuC4jMjbKT9pv//Il86ZVaY1dabsfe+4KFbeVlnkgX7xhzcjYpjMnieD/nmXB9LzVv1gmKbCOf1YekMwBGf/hdv5UimvSK8aLwuWiO/xlYn822I1yhV3Lrqpt8ZZBCfxczlN/myNq15IOCPRBwU2h7t60LjIwr/HhPM5yTvYMa+2tRYHI7WAaCr7zxS6mJPXkSgfm28XAQu8mJZl37BRpK6zlIcMBmuVfaxGLwJDOY/g0bsNr9hHlKSibOZ/b7aKTeq9blmTE+6nG2R7QkdLVmJShgmFnHSCVYzgHnuj26vW224YjKXb6RqSkKsRb2Kucj7/NeL861VvQ62uA2mPE04WZJbtCw2iVQfTLsycqYnIdkIKLPwkTuq6q64qrfMJP7MuFjAKFknqosaRkkZDBRDmJ+2J/SeHRBbUWgjYU49kz+F9SDoSZKTuDgEiukCtQfzw8wqDzm1uv56T5FgcbUwvAA4dS5NZoLC4MVag9tO/RRTVxQeXz2qMvEnU+1YZ2932/UNaRFNnY6PCii6ryxsVYk7opq39mhx2NqY1jcl1iBhzgUpj0WWUX+iGfLR7Gv2H8wy4DyLPiwOUtPZWTmryVKZkKQ1WTy++NgxhLUbY1NywHaov0pWtG/HNFl9ac+cE6oiFsfceKeDRE=
+    # DOCKER_EMAIL
+    - secure: YIdz5WnFd+26gtHpMokkB3mx0RzUZCRpkBjhhZ4U56+w67QUP8z5ok8Z9pYOpF0DGyoCBw6Sly4sNN9B+UFZdJbos4wgSg2cNpSaq6eiVUlPLuUsiwtFGZtBfrVLfGFZ2ek2jcSt0YN2nExOINQxazUQ32OGn52IuTE91yxeCfu8yuNLtjxeJ61POtRSPGEsl/25tItqOHgApyXk+SrDDcuiMxMLocgLDuVRF3chbhrAdNl0n699pFmF93hceOQukNeJ+hD+q9s1jyrFZu5l9P4PSSv3IS9JKs3os9NLWdlo9PjEw88f38l3KWK10ckWsKNKNBhmDyyJVD2dsIRHRBUjHnXzzhDcLvbJYHq8yp5bGNUvRP6taFYpppskUGyABU0sl1PifIhMwrX7pUf/neInYz5Z5ovnr9HVzYPIB4vjaxIpWkZWtRy7wpCLMAoKMSH4zA0Cc+CKfEq5dsWHDjzoiWhwM0geu8VEI/rOPT+93p2KYjzfavYwSwN2T1f+ZwzNf8KZBSxuCJClrwS3YuV7wWVcdfHh0KJiFkIUOgEMWL/0b+hyIzEg4do/iZ1MPOqh5OodFgE4c9j0tmoL/w8U6JGQlYF/pchVl7ns6/XZutGISyGDvHNY9LQA2F9jWv99+ClZ1y+q8V7GQWiFU1c6gk1xdjoItrwQkcFRGas=
+    # DOCKER_USERNAME
+    - secure: nKBGb+KbcA5e4ylTU+KNmMPwFuVRXeU/saQAtcpi2ni5k0+S+AlOGzvZuLZBm6nbMa9abc/Eeon/ezle3wHPmobjCT4Bt102JzHrtTsflNW4lD9n/KukZhAVEJAegKbZc4Jpc2cAK6HD6vUhUR6BX6Pa//RdJr/vgron7U7lL2GpdgStOy8/0VFYxOfv7de/F7cg7QpHK+7IqwUytn40I8MMG/qVK0dNnDmjZXH03Zky8WgTaQPPx8GwenU4JDw/LaEYvfxsV3Dz+N3pySQ4R8CW7w6tlfkovSMebai2bhJH7WWfmH0DlLb94oinMHLPswHmyW0aC2TYtladQxdjGtNWPkFRC/jo6Ur4KU8P7OBk8ME/MH9Ky13Hf5OUcIuTSrqNeCSI5toW4g1pBfUlXk/RdUVCX1iLqez8JSORkLcCDywbzw6+lnGlbe8jw8jLTeEn1mKBcFXs9pRnK198/EWuHqsbhn58JstR6e7odklBA2vdkGBXFjUGvn4dUwWq82wEUhFZbcOgm5J0fReBsnwH49zVlYzji0igPkdcvLaBjzV6Z7wUAovoSousYaTr/LvmNe8QN7Ycl+YKXmbmJ6Fpk1ROe+rx1t0GrxIK6s9XK5Hao5LXeUseWo61b4Ssmb6XYQsmMA88S7BAq4LPtAwJBrs3uwAeYmi8zcaE8Qo=
+    # DOCKER_PASSWORD
+    - secure: A0P5fxVX33KrgGnWj1+Iz7r9FS7yrORrdLnCaXIEToRR6eTXtqcZg0xBG9bZVb3KufhuwtqDfGQDeDsqumlkRAnIl8JcTJPjodnA4NdVa/nSlyU46KVpqRJdS9zrX5uIjNVR+dUaBg9aIyTvfVynzkLwUSOsddGNyal8ZPmz5hIV0+2R/9EKgNFwklSeolYODTA05ksXv90OjHQrcG4pRSR9Sv7ohFEaQ0fnAxXQhat6jErSnyo8TV752MWRSX7QOrFvsg95sYLKivaGT4l5+ziI0KQIyHnVWHnqM/0/iZ/j/fMN/h3TnPyimu8oKtMBO8FJITmawKNRMHAaMQkXQGVw2OdGmNfogA7VyHpayYaZqQ0TH3hgz99YzVkmn6filiCRBgxNYWaqLKML3srY5RxF35pdsaAM1QpQHgU5ZHajkOh48nSVLorVKiLw3dRzD4O2e75xCudRzNhgja+EN9EQs5MCI1DrooN25OGYtcDqjT9uI0QevCJ4XhVJbRNOJ+GFpIaVnL98u+AWsT7EmErwMFEdRiCWsIt5lLTj+ctmuprQ5uc2GUOnvc2b2Sj1lX/HfrNM3tG4HbvExnJbWquNUzYGqOdeLwlJ6izGc76LgEM0/lptIyeOhlFW8mjxVDI36HrwcFILjOrA0mqFnZIoIFGyxbMqLMr3lCvjD9Q=
+
+
+# Required to use Docker
+services:
+  - docker
+
+# Required if you want to run docker-compose in your build
+before_install:
+  # Installing docker engine 1.11.1
+  - sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-precise main" > /etc/apt/sources.list.d/docker.list'
+  - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  - sudo apt-get update
+  - sudo apt-key update
+  - sudo apt-get -qqy -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install docker-engine=1.11.1-0~precise
+  # Installing docker-compose 1.8.0
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  # Logging into private repo
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+# gradlew assemble will always run but you can add extra commands here
+script:
+  - ./gradlew integrationTest sonarqube
+
+after_success:
+  # Build image with new jar and tag the image as 'cidv'
+  # Then push this image to the private repo
+  - docker build -t clccloudint/testbuild:latest -t clccloudint/testbuild:cidv .
+  - docker push clccloudint/testbuild:latest
+  - docker push clccloudint/testbuild:cidv
